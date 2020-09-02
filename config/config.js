@@ -1,10 +1,26 @@
-/* eslint-disable linebreak-style */
-const ENV = process.env.NODE_ENV;
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/pmglobal-users';
-const PORT = process.env.PORT || 5000;
+const dotenv = require('dotenv');
 
-module.exports = {
-  ENV,
-  MONGODB_URI,
-  PORT,
+dotenv.config();
+
+const config = {
+  development: {
+    url: process.env.DATABASE_URL,
+    dialect: 'postgres',
+  },
+  test: {
+    url: process.env.TEST_DATABASE_URL,
+    dialect: 'postgres',
+    logging: false,
+  },
+  production: {
+    url: process.env.PRODUCTION_DATABASE_URL,
+    use_env_variable: process.env.PRODUCTION_DATABASE_URL,
+    dialect: 'postgres',
+    dialectOptions: {
+      ssl: true,
+    },
+  },
+  PORT: process.env.PORT || 5000
 };
+
+export default config;
