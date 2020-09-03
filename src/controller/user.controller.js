@@ -2,7 +2,6 @@ import userService from '../services/user.service';
 
 const create = async (request, response, next) => {
   try {
-    console.log('REQ', request.body)
     const user = await userService.create(request, response, next);
     response.status(201).json({ data: user });
   } catch (err) {
@@ -10,6 +9,13 @@ const create = async (request, response, next) => {
   }
 };
 
-const list = async (request, response, next) => {};
+const listUserById = async (request, response, next) => {
+  try {
+    const user = await userService.listUserById(request, response, next);
+    response.status(200).json({ data: user });
+  } catch (err) {
+    next(err);
+  }
+};
 
-export default { create, list };
+export default { create, listUserById };

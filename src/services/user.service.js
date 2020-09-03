@@ -1,5 +1,5 @@
 import { Validator } from 'jsonschema';
-import db from '../models/index';
+import { User } from '../models/index';
 import validateUserFields from '../validator/validate';
 import userNewSchema from '../schema/userSchema.json';
 
@@ -13,10 +13,17 @@ const create = async (request, response, next) => {
   if (validSchema !== 'OK') {
     return next(validSchema);
   }
-  const userRecord = await db.User.create(request.body);
+  const userRecord = await User.create(request.body);
   return userRecord;
+};
+
+const listUserById = async (request, response, next) => {
+  const { id } = request.params;
+  const user = await User.findById(id);
+  return user;
 };
 
 export default {
   create,
+  listUserById,
 };
