@@ -1,7 +1,7 @@
 import logger from 'simple-node-logger';
-import config from './config/config';
-import app from './app';
-import db from './models';
+import config from './src/config/config';
+import app from './src/app';
+import db from './src/models';
 
 const simpleLogger = logger.createSimpleLogger();
 
