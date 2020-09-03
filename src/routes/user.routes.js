@@ -5,13 +5,13 @@ const router = express.Router();
 
 router
   .route('')
-  // .get(userController.list)
+  .get(userController.list)
   .post(userController.create);
 
 router
   .route('/:id')
-  .get(userController.listUserById);
-  // .put(userController.updateUser)
-  // .delete(userController.deleteUser);
+  .get(userController.listUserById)
+  .put(userController.updateUserById)
+  .delete(userController.deleteUserById);
 
 export default router;
