@@ -12,7 +12,6 @@ const create = async (request, response, next) => {
 const list = async (request, response, next) => {
   try {
     const user = await userService.listUsers(request, response, next);
-    console.log('CONT ', user)
     response.status(200).json({ data: user });
   } catch (err) {
     next(err);

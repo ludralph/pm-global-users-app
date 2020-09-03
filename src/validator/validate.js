@@ -9,7 +9,6 @@ const APIError = require('../helpers/APIError');
  */
 function validateSchema(validation, type) {
   let errors;
-  console.log(validation);
   if (!validation.valid) {
     errors = validation.errors.map((error) => {
       

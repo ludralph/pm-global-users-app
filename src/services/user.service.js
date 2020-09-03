@@ -1,10 +1,9 @@
 import { Validator } from 'jsonschema';
 import db from '../models';
 import validateUserFields from '../validator/validate';
-import userNewSchema from '../schema/userSchema.json';
+const userNewSchema = require('../schema/userSchema');
 
 const { User } = db;
-const { Op } = db.Sequelize;
 
 const v = new Validator();
 const create = async (request, response, next) => {
@@ -79,8 +78,9 @@ const updateUserById = async (request, response, next) => {
     v.validate(payload, userNewSchema),
     'user'
   );
-
+    console.log('==> ', validSchema);
   if (validSchema !== 'OK') {
+    console.log('==>', validSchema)
     return next(validSchema);
   }
   const user = await User.findById(id);
